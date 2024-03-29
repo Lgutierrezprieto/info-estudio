@@ -1,0 +1,30 @@
+Arbol de clasificacion
+
+1. Libreria 
+from sklearn.tree import DecisionTreeClassifier 
+
+2. Modelo
+clf = DecisionTreeClassifier(criterion='entropy')
+
+3. Ajuste del modelo
+clf.fit(X_train, y_train)
+
+4. Predicciones
+y_preds = clf.predict(X_test)
+
+ACCURACY
+accuracy_score(y_test,y_preds)
+
+
+AUC
+false_positive_rate, true_positive_rate, thresholds = roc_curve(y_test, y_preds)
+roc_auc = auc(false_positive_rate, true_positive_rate)
+print('\nAUC is :{0}'.format(round(roc_auc, 2)))
+
+
+CONFUSION METRIX
+
+# Create and print a confusion matrix 
+print('\nConfusion Matrix')
+print('----------------')
+pd.crosstab(y_test, y_preds, rownames=['True'], colnames=['Predicted'], margins=True)

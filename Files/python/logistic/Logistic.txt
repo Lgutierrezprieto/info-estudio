@@ -1,0 +1,24 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+%matplotlib inline
+
+import statsmodels as sm
+import sklearn.preprocessing as preprocessing
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from scipy import stats
+
+#LIBRARY
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+
+#Definiendo X & y
+y = df["Survived"]
+X = df.drop("Survived", axis=1)
+
+#Train-Test Split
+X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0)
+
+#Modelo
+LogisticRegression(fit_intercept=False, C=1e12, solver='liblinear')

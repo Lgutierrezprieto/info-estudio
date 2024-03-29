@@ -1,0 +1,185 @@
+PCA with scikit-lear 
+
+1. Libraries
+from sklearn.decomposition import PCA
+
+2. Instanciar
+pca = PCA()
+
+3.  Fit 
+transformed = pca.fit_transform(X)
+
+4. Componentes
+pca.components_
+
+  	Mean
+	pca.mean_
+
+Determine the Explained Variance¶
+Typically, one would use PCA to actually reduce the number of dimensions. In this case, you've simply re-re-parametrized the dataset along new axes.
+That said, if you look at the first of these primary axes, you can see the patterns encapsulated by the principal component. Moreover, scikit-learn also lets you quickly determine the overall variance in the dataset accounted for in each of the principal components.
+
+5. pca.explained_variance_ratio_
+
+Steps for Performing PCA
+The theory behind PCA rests upon many foundational concepts of linear algebra. After all, PCA is re-encoding a dataset into an alternative basis (the axes). Here are the exact steps:
+
+Recenter each feature of the dataset by subtracting that feature's mean from the feature vector
+Calculate the covariance matrix for your centered dataset
+Calculate the eigenvectors of the covariance matrix
+You'll further investigate the concept of eigenvectors in the upcoming lesson
+Project the dataset into the new feature space: Multiply the eigenvectors by the mean-centered features
+You can see some of these intermediate steps from the pca instance object itself.
+
+
+# Pulling up the covariance matrix of the mean centered data
+pca.get_covariance() 
+
+# Pulling up the eigenvectors of the covariance matrix
+pca.components_
+
+
+
+-------------------------------
+1. Importar 
+from sklearn.decomposition import PCA
+
+2. Instanciar y numero de componentes pricipales
+pca = PCA(n_components=2)
+
+3. Fit PCA
+principalComponents = pca.fit_transform(X)
+
+4. Visualizar las componentes 
+principalComponents
+
+5. Create a new dataset from principal components 
+
+df = pd.DataFrame(data = principalComponents, 
+                  columns = ['PC1', 'PC2'])
+
+target = pd.Series(iris['target'], name='target')
+
+result_df = pd.concat([df, target], axis=1)
+result_df.head(5)
+
+Visualization
+
+# Principal Componets scatter plot
+plt.style.use('seaborn-v0_8-dark')
+fig = plt.figure(figsize = (10,8))
+ax = fig.add_subplot(1,1,1) 
+ax.set_xlabel('First Principal Component ', fontsize = 15)
+ax.set_ylabel('Second Principal Component ', fontsize = 15)
+ax.set_title('Principal Component Analysis (2PCs) for Iris Dataset', fontsize = 20)
+
+targets = [0, 1, 2]
+colors = ['magenta', 'navy', 'gold']
+for target, color in zip(targets, colors):
+    indicesToKeep = iris['target'] == target
+    ax.scatter(result_df.loc[indicesToKeep, 'PC1'], 
+               result_df.loc[indicesToKeep, 'PC2'], 
+               c = color, 
+               s = 50)
+ax.legend(targets)
+ax.grid()
+
+6. Explainded Variance
+pca.explained_variance_ratio_
+
+print('Variance of each component:', pca.explained_variance_ratio_)
+print('\n Total Variance Explained:', round(sum(list(pca.explained_variance_ratio_))*100, 2))
+
+
+
+
+____________________________________________________
+* Train test split 
+from sklearn.model_selection import train_test_split
+
+* Metricas 
+from sklearn import metrics
+
+
+*KNeighbors
+from sklearn.neighbors import KNeighborsClassifier
+
+*Para revisar el tiempo de ejecuacion
+import time
+
+* Condigo completo
+
+X = iris.data
+y = iris.target
+start = time.time()
+X_train, X_test, Y_train, Y_test = train_test_split(X, y, test_size=0.2, random_state=9)
+model = KNeighborsClassifier()
+model.fit(X_train, Y_train)
+Yhat = model.predict(X_test)
+acc = metrics.accuracy_score(Yhat, Y_test)
+end = time.time()
+print('Accuracy:', acc)
+print ('Time Taken:', end - start)
+
+______________________________
+PCA 
+
+X = result_df[['PC1', 'PC2']]
+y = result_df['target']
+
+start = time.time()
+X_train, X_test, Y_train, Y_test = train_test_split(X, y, test_size=0.2, random_state=9)
+model = KNeighborsClassifier()
+model.fit(X_train.values, Y_train.values)
+Yhat = model.predict(X_test.values)
+acc = metrics.accuracy_score(Yhat, Y_test.values)
+end = time.time()
+print('Accuracy:', acc)
+print ('Time Taken:', end - start)
+
+
+# Plot decision boundary using principal components 
+import numpy as np 
+def decision_boundary(pred_func):
+    
+    # Set the boundary
+    x_min, x_max = X.iloc[:, 0].min() - 0.5, X.iloc[:, 0].max() + 0.5
+    y_min, y_max = X.iloc[:, 1].min() - 0.5, X.iloc[:, 1].max() + 0.5
+    h = 0.01
+    
+    # Build meshgrid
+    xx, yy = np.meshgrid(np.arange(x_min, x_max, h), np.arange(y_min, y_max, h))
+    Z = pred_func(np.c_[xx.ravel(), yy.ravel()])
+    Z = Z.reshape(xx.shape)
+
+    # Plot the contour
+    plt.figure(figsize=(15,10))
+    plt.contourf(xx, yy, Z, cmap=plt.cm.afmhot)
+    plt.scatter(X.iloc[:, 0], X.iloc[:, 1], c=y, cmap=plt.cm.Spectral, marker='x')
+
+decision_boundary(lambda x: model.predict(x))
+
+plt.title('decision boundary');
+
+
+_________________________
+Maquina de soporte vectorial
+from sklearn import svm
+from sklearn.model_selection import train_test_split
+
+#Modelo
+clf = svm.SVC(C=5, gamma=0.05)
+%timeit clf.fit(X_train, y_train)
+
+train_acc = clf.score(X_train, y_train)
+test_acc = clf.score(X_test, y_test)
+print('Training Accuracy: {}\tTesting Accuracy: {}'.format(train_acc, test_acc))
+
+#Grid search: Busqueda de mejores hiperparametros
+clf = svm.SVC()
+param_grid = {'C' : np.linspace(0.1, 10, num=11),
+             'gamma' : np.linspace(10**-3, 5, num=11)}
+
+grid_search = GridSearchCV(clf, param_grid, cv=5)
+
+%timeit grid_search.fit(X_train, y_train)

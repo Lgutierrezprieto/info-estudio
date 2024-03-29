@@ -1,0 +1,98 @@
+1. Agrupar por país
+2. Analizar como obtener el costo de vida por país y ciudad
+
+# Columnas a eliminar 
+1. data_quality
+
+#Categoria
+Restaurants 
+| Meal, Inexpensive Restaurant  x1  0.                                       | Restaurants         |                    16 |           0 |
+| Meal for 2 People, Mid-range Restaurant, Three-course x2                   | Restaurants         |                   3.5 |           0 |
+| McMeal at McDonalds (or Equivalent Combo Meal)  x3                         | Restaurants         |                     6 |           0 |
+| Domestic Beer (0.5 liter draught) x4                                       | Restaurants         |                     5 |           0 |
+| Imported Beer (0.33 liter bottle) x5                                       | Restaurants         |                     5 |           0 |
+| Cappuccino (regular)  x6                                                   | Restaurants         |                    15 |           0 |
+| Coke/Pepsi (0.33 liter bottle)   x7                                        | Restaurants         |                     6 |           0 |
+| Water (0.33 liter bottle)  x8                                              | Restaurants         |                     6 |           0 |
+
+sum = 18%
+Markets
+| Milk (regular), (1 liter) x9                                                | Markets             |                    25 |           0 |
+| Loaf of Fresh White Bread (500g) x10                                        | Markets             |                    31 |           0 |
+| Rice (white), (1kg) x11                                                     | Markets             |                    14 |           0 |
+| Eggs (regular) (12) x12                                                     | Markets             |                    20 |           0 |
+| Local Cheese (1kg)  x13                                                     | Markets             |                    12 |           0 |
+| Chicken Fillets (1kg)  x14                                                  | Markets             |                    15 |           0 |
+| Beef Round (1kg) (or Equivalent Back Leg Red Meat) x15                      | Markets             |                    15 |           0 |
+| Apples (1kg)   x16                                                          | Markets             |                    31 |           0 |
+| Banana (1kg)   x17                                                          | Markets             |                    25 |           0 |
+| Oranges (1kg)  x18                                                          | Markets             |                    30 |           0 |
+| Tomato (1kg)   x19                                                          | Markets             |                    22 |           0 |
+| Potato (1kg)   x20                                                          | Markets             |                    24 |           0 |
+| Onion (1kg)    x21                                                          | Markets             |                    10 |           0 |
+| Lettuce (1 head) x22                                                        | Markets             |                    18 |           0 |
+| Water (1.5 liter bottle) x23                                                | Markets             |                    30 |           0 |
+| Bottle of Wine (Mid-Range)  x24          0.035                              | Markets             |                     4 |           0 |
+| Domestic Beer (0.5 liter bottle)  x25    0.035                              | Markets             |                     6 |           0 |
+| Imported Beer (0.33 liter bottle) x26    0.040                              | Markets             |                     6 |           0 |
+| Cigarettes 20 Pack (Marlboro)     x27    0.025                              | Markets             |                    15 |           0 
+
+sum = 38%
+Transportation
+| One-way Ticket (Local Transport) x28                                        | Transportation      |                    20 |           0 |
+| Monthly Pass (Regular Price) x29                                            | Transportation      |                   1.5 |           0 |
+| Taxi Start (Normal Tariff) x30                                              | Transportation      |                     5 |           0 |
+| Taxi 1km (Normal Tariff)  x31                                               | Transportation      |                    20 |           0 |
+| Taxi 1hour Waiting (Normal Tariff) x32                                      | Transportation      |                   0.7 |           0 |
+| Gasoline (1 liter)  x33                                                     | Transportation      |                    60 |           0 |
+| Volkswagen Golf 1.4 90 KW Trendline (Or Equivalent New Car) x34             | Transportation      |                0.0035 |           0 |
+| Toyota Corolla Sedan 1.6l 97kW Comfort (Or Equivalent New Car) x35          | Transportation      |                0.0035 |           0 |
+
+Utilities
+| Basic (Electricity, Heating, Cooling, Water, Garbage) for 85m2 Apartment x36 | Utilities (Monthly) |                     1 |           0 |
+| 1 min. of Prepaid Mobile Tariff Local (No Discounts or Plans) (USD) x37      | Utilities (Monthly) |                     4 |           0 |
+| Internet (60 Mbps or More, Unlimited Data, Cable/ADSL) x38                   | Utilities (Monthly) |                     1 |           0 |
+
+Sports And Leisure
+| Fitness Club, Monthly Fee for 1 Adult x39                                   | Sports And Leisure  |                   2.3 |           0 |
+| Tennis Court Rent (1 Hour on Weekend) x40                                   | Sports And Leisure  |                     3 |           0 |
+| Cinema, International Release, 1 Seat x41                                   | Sports And Leisure  |                     6 |           0 |
+
+Childcare
+| Preschool (or Kindergarten), Full Day, Private, Monthly for 1 Child (USD) x42   | Elementary Education  |                
+| International Primary School, Yearly for 1 Child (USD) x43                      | Elementary Education  |
+
+Clothing And Shoes
+| 1 Pair of Jeans (Levis 501 Or Similar) x44                                   | Clothing And Shoes  |                  0.35 |           0 |
+| 1 Summer Dress in a Chain Store (Zara, H&M, ...) x45                         | Clothing And Shoes  |                  0.35 |           0 |
+| 1 Pair of Nike Running Shoes (Mid-Range) x46                                 | Clothing And Shoes  |                  0.35 |           0 |
+| 1 Pair of Men Leather Business Shoes x47                                     | Clothing And Shoes  |                  0.35 |           0 |           
+
+Rent Per Month
+| Apartment (1 bedroom) in City Centre x48                                    | Rent Per Month      |                     0 |        0.25 |
+| Apartment (1 bedroom) Outside of Centre x49                                 | Rent Per Month      |                     0 |        0.20 |
+| Apartment (3 bedrooms) in City Centre x50                                   | Rent Per Month      |                     0 |        0.25 |
+| Apartment (3 bedrooms) Outside of Centre x51                                | Rent Per Month      |                     0 |        0.20 |
+
+Buy Apartment Price
+| Price per Square Meter to Buy Apartment in City Centre (USD) x52            | Buy Apartment Price  | 0.06              
+| Price per Square Meter to Buy Apartment Outside of Centre (USD) x53         | Buy Apartment Price  | 0.04
+
+Salaries And Financing
+|Average Monthly Net Salary (After Tax) (USD) x54                                      | Salaries And Financing  |                
+|Mortgage Interest Rate in Percentages (%), Yearly, for 20 Years Fixed-Rate x55        | Salaries And Financing  |
+
+COST LIVING INDEX: Groceries (40), restaurants (20), transportation (24) and utilities 16.
+
+522.707
+
+RENT INDEX: 
+
+
+New York 
+https://www.numbeo.com/common/motivation_and_methodology.jsp
+https://www.numbeo.com/cost-of-living/rankings.jsp
+https://es.numbeo.com/coste-de-vida/%C3%ADndices-explicados
+https://es.numbeo.com/coste-de-vida/ciudad/Nueva-York
+https://worldwidecostofliving.com/asp/wcol_HelpIndexCalc.asp
+
